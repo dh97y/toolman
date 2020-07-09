@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzy.toolman.db.dao.common.TbNotifyRecordMapper">
+  <resultMap id="BaseResultMap" type="com.hzy.toolman.db.domain.common.TbNotifyRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="notify_id" jdbcType="BIGINT" property="notifyId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="is_read" jdbcType="TINYINT" property="isRead" />
+    <result column="read_date" jdbcType="DATE" property="readDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, notify_id, user_id, is_read, read_date
+  </sql>
+  <select id="selectByExample" parameterType="com.hzy.toolman.db.domain.common.TbNotifyRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_notify_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExampleSelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <if test="example.distinct">
+      distinct
+    </if>
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.aliasedEscapedColumnName}
+        </foreach>
+      </when>
+      <otherwise>
+        <include refid="Base_Column_List" />
+      </otherwise>
+    </choose>
+    from tb_notify_record
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+    <if test="example.orderByClause != null">
+      order by ${example.orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_notify_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByPrimaryKeySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.aliasedEscapedColumnName}
+        </foreach>
+      </when>
+      <otherwise>
+        <include refid="Base_Column_List" />
+      </otherwise>
+    </choose>
+    from tb_notify_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_notify_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hzy.toolman.db.domain.common.TbNotifyRecordExample">
+    delete from tb_notify_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hzy.toolman.db.domain.common.TbNotifyRecord">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_notify_record (notify_id, user_id, is_read, 
+      read_date)
+    values (#{notifyId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{isRead,jdbcType=TINYINT}, 
+      #{readDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzy.toolman.db.domain.common.TbNotifyRecord">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_notify_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="notifyId != null">
+        notify_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="isRead != null">
+        is_read,
+      </if>
+      <if test="readDate != null">
+        read_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="notifyId != null">
+        #{notifyId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="isRead != null">
+        #{isRead,jdbcType=TINYINT},
+      </if>
+      <if test="readDate != null">
+        #{readDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hzy.toolman.db.domain.common.TbNotifyRecordExample" resultType="java.lang.Long">
+    select count(*) from tb_notify_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_notify_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.notifyId != null">
+        notify_id = #{record.notifyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.isRead != null">
+        is_read = #{record.isRead,jdbcType=TINYINT},
+      </if>
+      <if test="record.readDate != null">
+        read_date = #{record.readDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_notify_record
+    set id = #{record.id,jdbcType=BIGINT},
+      notify_id = #{record.notifyId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      is_read = #{record.isRead,jdbcType=TINYINT},
+      read_date = #{record.readDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzy.toolman.db.domain.common.TbNotifyRecord">
+    update tb_notify_record
+    <set>
+      <if test="notifyId != null">
+        notify_id = #{notifyId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="isRead != null">
+        is_read = #{isRead,jdbcType=TINYINT},
+      </if>
+      <if test="readDate != null">
+        read_date = #{readDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzy.toolman.db.domain.common.TbNotifyRecord">
+    update tb_notify_record
+    set notify_id = #{notifyId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      is_read = #{isRead,jdbcType=TINYINT},
+      read_date = #{readDate,jdbcType=DATE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectOneByExample" parameterType="com.hzy.toolman.db.domain.common.TbNotifyRecordExample" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_notify_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    limit 1
+  </select>
+  <select id="selectOneByExampleSelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <choose>
+      <when test="selective != null and selective.length > 0">
+        <foreach collection="selective" item="column" separator=",">
+          ${column.aliasedEscapedColumnName}
+        </foreach>
+      </when>
+      <otherwise>
+        <include refid="Base_Column_List" />
+      </otherwise>
+    </choose>
+    from tb_notify_record
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+    <if test="example.orderByClause != null">
+      order by ${example.orderByClause}
+    </if>
+    limit 1
+  </select>
+
+  <!-- edit by hzy -->
+
+  <insert id="batchSave" parameterType="com.hzy.toolman.db.domain.common.TbNotifyRecord"
+          useGeneratedKeys="true" keyProperty="id">
+    insert into tb_notify_record
+    (
+    `notify_id`,
+    `user_id`,
+    `is_read`,
+    `read_date`
+    )
+    values
+    <foreach item="item" index="index" collection="list"
+             separator=",">
+      (
+      #{item.notifyId},
+      #{item.userId},
+      #{item.isRead},
+      #{item.readDate}
+      )
+    </foreach>
+  </insert>
+
+  <delete id="batchRemoveByNotifyId">
+    delete from tb_notify_record where notify_id in
+    <foreach item="id" collection="array" open="(" separator=","
+             close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+</mapper>

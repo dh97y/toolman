@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox-content">
+					<div id="jsTree"></div>
+				</div>
+				<div class="form-group ">
+					<input id="id" name="id" type="hidden" th:value="${id}">
+					<div class="col-sm-12 col-sm-offset-12">
+						<button type="submit" onclick="loadTeacher()" class="btn btn-primary">提交</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			getTreeData()
+		});
+		function getTreeData() {
+			var id = $('#id').val();
+			if (id !== null && id !== '') {
+				$.ajax({
+					type : "GET",
+					url : "/sys/dept/treeTeacher/" + id,
+					success : function(tree) {
+						loadTree(tree);
+					}
+				});
+			} else {
+				$.ajax({
+					type : "GET",
+					url : "/sys/dept/treeTeacher",
+					success : function(tree) {
+						loadTree(tree);
+					}
+				});
+			}
+		}
+		function loadTree(tree) {
+			console.log(tree);
+			$('#jsTree').jstree({
+				'core' : {
+					'data' : tree
+				},
+				"plugins" : [ "checkbox" ]
+			});
+			$('#jsTree').jstree().open_all();
+		}
+		function loadTeacher(){
+			var usernames,userIds;
+			var ref = $('#jsTree').jstree(true); // 获得整个树
+			userIds = ref.get_bottom_selected();
+			teachers = ref.get_bottom_checked('true');
+			var txt="";
+			for(var teacher in teachers){
+				if(teachers[teacher].state.mType=="teacher"){
+					txt=txt+teachers[teacher].text+",";
+				}
+			}
+			parent.loadTeacher(userIds,txt);
+			var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+			parent.layer.close(index);
+		}
+	</script>
+</body>
+</html>

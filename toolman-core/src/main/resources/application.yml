@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: core, db
+  messages:
+    encoding: UTF-8
+  devtools:
+    restart:
+      enabled: true

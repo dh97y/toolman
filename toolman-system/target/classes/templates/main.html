@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>欢迎页</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="index_style">
+                <div class="frame">
+                    <span class="title_name">用户信息</span>
+                    <div class="content">
+                        <ul class="xj_list clearfix">
+                            <li>
+                                <label class="label_name">用户名</label>
+                                <div class="xinxi">
+                                    <b th:text="${name}" ></b>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="label_name">角色</label>
+                                <div class="xinxi">
+                                    <b th:text="${roleName}" ></b>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="label_name">最后登录IP</label>
+                                <div class="xinxi">
+                                    <b th:text="${lastLoginIp}" ></b>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--结束-->
+                <div class="frame">
+                    <span class="title_name">系统信息</span>
+                    <div class="content">
+                        <ul class="xj_list clearfix">
+                            <li>
+                                <label class="label_name">IP地址</label>
+                                <div class="xinxi">
+                                    <b th:text="${systemInfo.hostIp}"></b>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="label_name">主机名</label>
+                                <div class="xinxi">
+                                    <b th:text="${systemInfo.hostName}"></b>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="label_name">操作系统</label>
+                                <div class="xinxi">
+                                    <b th:text="${systemInfo.osName}"></b>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="label_name">系统架构</label>
+                                <div class="xinxi">
+                                    <b th:text="${systemInfo.arch}"></b>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="label_name">系统版本</label>
+                                <div class="xinxi">
+                                    <b th:text="${systemInfo.osVersion}"></b>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="label_name">处理器个数</label>
+                                <div class="xinxi">
+                                    <b th:text="${systemInfo.processors}"></b>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="label_name">Java版本</label>
+                                <div class="xinxi">
+                                    <b th:text="${systemInfo.javaVersion}"></b>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="label_name">Java路径</label>
+                                <div class="xinxi">
+                                    <b th:text="${systemInfo.javaHome}"></b>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--结束-->
+            </div>
+            <!-- 首页样式结束 -->
+        </div>
+    </div>
+</div>
+</body>
+<script src="/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="/js/openTab.js" th:src="@{/js/openTab.js}"></script>
+</html>
