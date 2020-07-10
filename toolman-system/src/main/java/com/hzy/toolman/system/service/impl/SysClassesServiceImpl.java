@@ -215,4 +215,9 @@ public class SysClassesServiceImpl implements SysClassesService {
     public TbClasses getClassesById(Long id) {
         return tbClassesMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public List<TbClasses> listByUserId(Long userId) {
+        return tbClassesMapper.listByUserId(userId);
+    }
 }

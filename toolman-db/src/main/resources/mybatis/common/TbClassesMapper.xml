@@ -306,4 +306,17 @@
     order by tc.name asc
   </select>
 
+  <select id="listByUserId" resultType="com.hzy.toolman.db.domain.common.TbClasses">
+    SELECT
+        tc.id,
+        tc.name,
+        tc.status
+    FROM
+        tb_classes tc
+    LEFT JOIN tb_user_classes tuc ON tuc.classes_id = tc.id
+    WHERE
+        tuc.user_id = #{userId}
+    ORDER BY tc.name asc
+  </select>
+
 </mapper>

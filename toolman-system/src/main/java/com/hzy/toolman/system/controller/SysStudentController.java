@@ -85,7 +85,7 @@ public class SysStudentController extends BaseController {
     @GetMapping("/edit/{id}")
     public String toEditPage(@PathVariable("id") Long id, Model model) {
         TbStudent student = sysStudentService.getStudentById(id);
-        List<TbClasses> classes = sysClassesService.list();
+        List<TbClasses> classes = sysClassesService.listByUserId(getSysUserId());
         model.addAttribute("student", student);
         model.addAttribute("classes", classes);
         return "system/teach/student/edit";

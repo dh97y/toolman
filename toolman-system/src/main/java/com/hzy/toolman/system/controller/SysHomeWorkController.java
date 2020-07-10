@@ -65,7 +65,7 @@ public class SysHomeWorkController extends BaseController {
     @GetMapping("/list")
     @ResponseBody
     public Page<TbHomework> list(@RequestParam Map<String, Object> params) {
-        params.put("userId", getSysUserId());
+        params.put("createBy", getSysUserId());
         Query query = new Query(params);
         List<TbHomework> list = sysHomeWorkService.list(query);
         int total = sysHomeWorkService.count(query);
@@ -103,7 +103,7 @@ public class SysHomeWorkController extends BaseController {
     public String toEditPage(@PathVariable("id") Long id, Model model) {
         TbHomework homework = sysHomeWorkService.getHomeworkById(id);
         Long classesId = sysClassesHomeworkService.getClassesIdByHomeworkId(id);
-        List<TbClasses> classes = sysClassesService.list();
+        List<TbClasses> classes = sysClassesService.listByUserId(getSysUserId());
         model.addAttribute("homework", homework);
         model.addAttribute("classes", classes);
         model.addAttribute("classesId", classesId);

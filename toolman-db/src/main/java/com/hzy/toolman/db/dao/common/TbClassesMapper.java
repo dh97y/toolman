@@ -45,4 +45,6 @@ public interface TbClassesMapper {
     int batchRemove(Long[] ids);
 
     List<TbClasses> getClassesByUserId(Long userId);
+
+    List<TbClasses> listByUserId(Long userId);
 }

@@ -96,7 +96,7 @@ function validateRule() {
 function loadClasses(){
 	var html = "";
 	$.ajax({
-		url : '/sys/teach/classes/list',
+		url : '/sys/teach/classes/listByUserId',
 		success : function(data) {
 			//加载数据
 			for (var i = 0; i < data.length; i++) {

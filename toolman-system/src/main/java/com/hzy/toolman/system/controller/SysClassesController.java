@@ -56,6 +56,14 @@ public class SysClassesController extends BaseController {
         return list;
     }
 
+    @RequiresPermissions("sys:teach:classes")
+    @GetMapping("/listByUserId")
+    @ResponseBody
+    public List<TbClasses> listByUserId() {
+        List<TbClasses> list = sysClassesService.listByUserId(getSysUserId());
+        return list;
+    }
+
     @RequiresPermissions("sys:teach:classes:add")
     @GetMapping("/add")
     public String toAddPage() {

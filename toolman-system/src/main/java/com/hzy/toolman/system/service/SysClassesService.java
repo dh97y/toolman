@@ -31,4 +31,6 @@ public interface SysClassesService {
     TbClasses getClassesById(Long id);
 
     Tree<TbClasses> getClassesTree(Long userId);
+
+    List<TbClasses> listByUserId(Long userId);
 }
