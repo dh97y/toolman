@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @projectName: toolman
@@ -42,9 +43,9 @@ public class SysLogServiceImpl implements SysLogService {
     }
 
     @Override
-    public Page<SysLog> queryList(Query query) {
-        int total = sysLogMapper.count(query);
-        List<SysLog> sysLogs = sysLogMapper.list(query);
+    public Page<SysLog> queryList(Map<String, Object> map) {
+        int total = sysLogMapper.count(map);
+        List<SysLog> sysLogs = sysLogMapper.list(map);
         Page<SysLog> page = new Page<>();
         page.setTotal(total);
         page.setRows(sysLogs);

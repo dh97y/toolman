@@ -4,6 +4,8 @@ import com.hzy.toolman.core.domain.Page;
 import com.hzy.toolman.db.domain.Query;
 import com.hzy.toolman.db.domain.system.SysLog;
 
+import java.util.Map;
+
 /**
  * @projectName: toolman
  * @description:
@@ -20,6 +22,6 @@ public interface SysLogService {
 
     SysLog getLastLoginInfoByUserId(Long userId);
 
-    Page<SysLog> queryList(Query query);
+    Page<SysLog> queryList(Map<String, Object> map);
 
 }

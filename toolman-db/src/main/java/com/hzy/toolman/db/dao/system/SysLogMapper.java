@@ -47,7 +47,7 @@ public interface SysLogMapper {
 
     int count(Map<String,Object> map);
 
-    List<SysLog> list(Query query);
+    List<SysLog> list(Map<String, Object> map);
 
     int batchRemove(Long[] ids);
 

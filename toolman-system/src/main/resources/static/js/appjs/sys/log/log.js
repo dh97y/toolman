@@ -40,7 +40,6 @@ function load() {
                         offset: params.offset,
                         sort: 'gmt_create',
                         order: 'desc',
-                        name: $('#searchName').val(),
                         operation: $("#searchOperation").val(),
                         username: $("#searchUsername").val()
                     };
