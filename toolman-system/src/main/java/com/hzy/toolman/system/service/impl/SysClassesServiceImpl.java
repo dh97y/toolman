@@ -101,7 +101,9 @@ public class SysClassesServiceImpl implements SysClassesService {
     @Override
     public Tree<TbClasses> getTree() {
         List<Tree<TbClasses>> trees = new ArrayList<>();
-        List<TbClasses> tbClasses = tbClassesMapper.selectByExample(new TbClassesExample());
+        TbClassesExample example = new TbClassesExample();
+        example.setOrderByClause("name asc");
+        List<TbClasses> tbClasses = tbClassesMapper.selectByExample(example);
         Long[] allClassesId = tbClassesMapper.getAllClassesId();
         Long[] studentClassesId = tbStudentMapper.getAllClassesId();
         Long[] classesIds = (Long[]) ArrayUtils.addAll(allClassesId, studentClassesId);
@@ -142,7 +144,9 @@ public class SysClassesServiceImpl implements SysClassesService {
     @Override
     public Tree<TbClasses> getTreeByClassId(Long id) {
         List<Tree<TbClasses>> trees = new ArrayList<>();
-        List<TbClasses> tbClasses = tbClassesMapper.selectByExample(new TbClassesExample());
+        TbClassesExample example = new TbClassesExample();
+        example.setOrderByClause("name asc");
+        List<TbClasses> tbClasses = tbClassesMapper.selectByExample(example);
         Long[] allClassesId = tbClassesMapper.getAllClassesId();
         Long[] studentClassesId = tbStudentMapper.getAllClassesId();
         Long[] classesIds = (Long[]) ArrayUtils.addAll(allClassesId, studentClassesId);
